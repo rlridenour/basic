@@ -1,0 +1,236 @@
+% Basic White theme
+% https://github.com/rlridenour/beamer-themes/basicwhite
+
+
+% Adapted from the Auriga theme
+% https://github.com/anishathalye/auriga
+
+% ====================
+% Options
+% ====================
+
+\newif\if@doSections
+\@doSectionsfalse
+\DeclareOption{sections}{\@doSectionstrue}
+
+\newif\if@douniv
+\@dounivfalse
+\DeclareOption{univ}{\@dounivtrue}
+
+\newif\if@doschool
+\@doschoolfalse
+\DeclareOption{school}{\@doschooltrue}
+
+\newif\if@doplain
+\@doplainfalse
+\DeclareOption{plain}{\@doplaintrue}
+
+
+\ProcessOptions
+
+% ====================
+% Dependencies
+% ====================
+
+\RequirePackage{exscale}
+\RequirePackage{ragged2e}
+\RequirePackage{changepage}
+\RequirePackage[T1]{fontenc}
+% \RequirePackage{fontspec}
+\RequirePackage{xpatch}
+% \RequirePackage{luatextra}
+\RequirePackage[absolute,overlay]{textpos}
+\RequirePackage{calc}
+\RequirePackage{helvet}
+\RequirePackage{mathastext}
+\RequirePackage{isomath}
+
+% ====================
+% Fonts
+% ====================
+
+
+\AtBeginDocument{%
+  \DeclareMathSymbol{0}{\mathalpha}{operators}{`0}%
+  \DeclareMathSymbol{1}{\mathalpha}{operators}{`1}%
+  \DeclareMathSymbol{2}{\mathalpha}{operators}{`2}%
+  \DeclareMathSymbol{3}{\mathalpha}{operators}{`3}%
+  \DeclareMathSymbol{4}{\mathalpha}{operators}{`4}%
+  \DeclareMathSymbol{5}{\mathalpha}{operators}{`5}%
+  \DeclareMathSymbol{6}{\mathalpha}{operators}{`6}%
+  \DeclareMathSymbol{7}{\mathalpha}{operators}{`7}%
+  \DeclareMathSymbol{8}{\mathalpha}{operators}{`8}%
+  \DeclareMathSymbol{9}{\mathalpha}{operators}{`9}%
+}
+
+\setbeamerfont{title page title}{size=\LARGE,series=\bfseries}
+\setbeamerfont{title page subtitle}{size=\large,series=\bfseries}
+\setbeamerfont{title page author}{size=\small}
+\setbeamerfont{title page institute}{size=\footnotesize}
+\setbeamerfont{section page}{size=\Large,series=\bfseries}
+\setbeamerfont{subsection page}{size=\large,series=\bfseries}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{caption}{size=\footnotesize}
+
+
+% ====================
+% Macros
+% ====================
+
+\newcommand{\samelineand}{\qquad}
+
+% ====================
+% Elements
+% ====================
+
+% Itemize
+
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamertemplate{itemize subsubitem}[circle]
+\xpatchcmd{\itemize}
+{\def\makelabel}
+{\ifnum\@itemdepth=1\relax
+    \setlength\itemsep{1ex}% separation for first level
+  \else
+    \ifnum\@itemdepth=2\relax
+      \setlength\itemsep{0.5ex}% separation for second level
+    \else
+      \ifnum\@itemdepth=3\relax
+        \setlength\itemsep{0.5ex}% separation for third level
+      \fi\fi\fi\def\makelabel
+}
+{}
+{}
+
+
+% Enumerate
+
+\setbeamertemplate{enumerate subitem}{\alph{enumii}.}
+% \setbeamertemplate{enumerate subsubitem}[]
+\setbeamertemplate{enumerate subsubitem}{\insertenumlabel)}
+% Equation
+\setlength\belowdisplayshortskip{2ex}
+
+% Caption
+\setlength{\abovecaptionskip}{2ex}
+\setlength{\belowcaptionskip}{1ex}
+\setbeamertemplate{caption}
+{
+  {\usebeamerfont{caption}\insertcaption}
+}
+
+% Navigation
+\beamertemplatenavigationsymbolsempty
+
+% ====================
+% Components
+% ====================
+
+
+% Title page
+
+  \setbeamertemplate{title page}
+  {
+    \begin{columns}[c]
+      \begin{column}{.6\textwidth}
+        \vfill
+        {\usebeamerfont{title page title}\usebeamercolor[fg]{title page}\inserttitle\par\vspace{0.5ex}}
+        {\usebeamerfont{title page subtitle}\usebeamercolor[fg]{title page}\insertsubtitle\par\vspace{1.5ex}}
+        {\usebeamerfont{title page author}\usebeamercolor[fg]{title page}\insertauthor\par\vspace{1ex}}
+        {\usebeamerfont{title page institute}\usebeamercolor[fg]{title page}\insertinstitute\par\vspace{1ex}}
+        {\usebeamerfont{title page institute}\usebeamercolor[fg]{title page}\insertdate\par\vspace{1ex}}
+        \vfill
+      \end{column}
+      \begin{column}{.4\textwidth}
+      \end{column}
+    \end{columns}
+  }
+
+\if@douniv
+  \setbeamertemplate{title page}
+  {
+    \begin{columns}[c]
+      \begin{column}{.6\textwidth}
+        \vfill
+        {\usebeamerfont{title page title}\usebeamercolor[fg]{title page}\inserttitle\par\vspace{0.5ex}}
+        {\usebeamerfont{title page subtitle}\usebeamercolor[fg]{title page}\insertsubtitle\par\vspace{1.5ex}}
+        {\usebeamerfont{title page author}\usebeamercolor[fg]{title page}\insertauthor\par\vspace{1ex}}
+        {\usebeamerfont{title page institute}\usebeamercolor[fg]{title page}\insertinstitute\par\vspace{1ex}}
+        {\usebeamerfont{title page institute}\usebeamercolor[fg]{title page}\insertdate\par\vspace{1ex}}
+        \vfill
+      \end{column}
+      \begin{column}{.4\textwidth}
+        \vfill
+        \includegraphics[width=50mm]{univ.png}
+        \vfill
+      \end{column}
+    \end{columns}
+  }
+\fi
+
+
+\if@doschool
+  \setbeamertemplate{title page}
+  {
+    \begin{columns}[c]
+      \begin{column}{.6\textwidth}
+        \vfill
+        {\usebeamerfont{title page title}\usebeamercolor[fg]{title page}\inserttitle\par\vspace{0.5ex}}
+        {\usebeamerfont{title page subtitle}\usebeamercolor[fg]{title page}\insertsubtitle\par\vspace{1.5ex}}
+        {\usebeamerfont{title page author}\usebeamercolor[fg]{title page}\insertauthor\par\vspace{1ex}}
+        {\usebeamerfont{title page institute}\usebeamercolor[fg]{title page}\insertinstitute\par\vspace{1ex}}
+        {\usebeamerfont{title page institute}\usebeamercolor[fg]{title page}\insertdate\par\vspace{1ex}}
+        \vfill
+      \end{column}
+      \begin{column}{.4\textwidth}
+        \vfill
+        \includegraphics[width=50mm]{school.png}
+        \vfill
+      \end{column}
+    \end{columns}
+  }
+\fi
+
+% Sections
+
+% Section page
+\setbeamertemplate{section page}
+{
+  \begin{centering}
+    \vspace*{\fill}
+    {\usebeamerfont{title page title}\usebeamercolor[fg]{title page}\insertsection\\[1.5ex]}
+    \vspace*{\fill}
+  \end{centering}
+  \framebreak
+}
+
+% Subsection page
+\setbeamertemplate{subsection page}
+{
+  % \begin{centering}
+  \vspace*{\fill}
+  {\usebeamerfont{subsection page}\usebeamercolor[fg]{title page}\insertsubsection\\[1.5ex]}
+  \vspace*{\fill}
+  % \end{centering}
+  \framebreak
+}
+
+
+\if@doSections
+  \AtBeginSection[]{
+    \sectionpage
+  }
+  \AtBeginSubsection[]{
+    \subsectionpage
+  }
+\fi
+
+% Frame title
+\setbeamertemplate{frametitle}{
+  \nointerlineskip
+  \vskip2ex
+  {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle}
+}
+
+\usecolortheme{basicwhite}
