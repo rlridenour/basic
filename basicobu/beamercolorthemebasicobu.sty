@@ -1,4 +1,4 @@
-% Color theme template for basic themes.
+% Basic theme with OBU colors
 
 
 \mode<presentation>
@@ -24,7 +24,7 @@
 \definecolor{obuBlack}{RGB}{0, 0, 0}	
 
 
-\newcommand{\beamertitlecolor}{obuBlack}
+\newcommand{\beamertitlecolor}{obuGreen}
 \newcommand{\beamertextcolor}{obuBlack}
 \newcommand{\beamerbgcolor}{obuWhite}
 \newcommand{\beamerfootertextcolor}{obuBlack}
@@ -35,8 +35,9 @@
 \setbeamercolor*{footline}{fg=\beamerfootertextcolor, bg=\beamerbgcolor}
 \setbeamercolor*{frametitle}{fg=\beamertitlecolor, bg=\beamerbgcolor}
 
-\setbeamercolor*{author}{parent=normal text}
+\setbeamercolor*{author}{parent=frametitle}
 \setbeamercolor*{title}{parent=frametitle}
+\setbeamercolor*{title page}{parent=frametitle}
 
 \setbeamercolor*{section in toc}{parent=normal text}
 \setbeamercolor*{subsection in toc}{parent=normal text}
