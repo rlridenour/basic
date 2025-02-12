@@ -149,9 +149,21 @@
     \end{centering}
 }
 
-\AtBeginSection[]{
+\AtBeginSection[sectionpage]{
   \sectionpage
-  }
+}
+
+% Subsection page
+\setbeamertemplate{subsection page}
+{
+  % \begin{centering}
+  \vspace*{\fill}
+  {\usebeamerfont{subsection page}\usebeamercolor[fg]{title page}\insertsubsection\\[1.5ex]}
+  \vspace*{\fill}
+  % \end{centering}
+  \framebreak
+}
+
 % Footer
 % \setbeamertemplate{footline}{
 %     \hfill%
